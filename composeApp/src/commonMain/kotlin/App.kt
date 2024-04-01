@@ -24,6 +24,10 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -41,6 +45,7 @@ data class BottomNavigationItem(
 @Composable
 @Preview
 fun App() {
+    val navController = rememberNavController()
     MaterialTheme {
         val items = listOf(
             BottomNavigationItem(
@@ -78,7 +83,7 @@ fun App() {
                                 selected = selectedItemIndex == index,
                                 onClick = {
                                     selectedItemIndex = index
-                                    // navController.navigate(item.title)
+                                     navController.navigate(item.title)
                                 },
                                 label = {
                                     Text(text = item.title)
@@ -109,8 +114,25 @@ fun App() {
                     }
                 }
             ) {
-
+                NavigationHost(navController = navController)
             }
+        }
+    }
+}
+@Composable
+fun NavigationHost(navController: NavHostController) {
+    NavHost(navController = navController, startDestination = "home") {
+        composable("home") {
+            // Your home screen content goes here
+            Text(text = "Home Screen")
+        }
+        composable("chat") {
+            // Your chat screen content goes here
+            Text(text = "Chat Screen")
+        }
+        composable("settings") {
+            // Your settings screen content goes here
+            Text(text = "Settings Screen")
         }
     }
 }

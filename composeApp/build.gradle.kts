@@ -40,6 +40,8 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+            implementation(libs.internal.lifecycle.viewmodel.compose)
+            implementation(libs.internal.navigation.compose)
         }
     }
 }

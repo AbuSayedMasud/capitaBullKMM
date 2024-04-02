@@ -134,5 +134,9 @@ fun NavigationHost(navController: NavHostController) {
             // Your settings screen content goes here
             Text(text = "Settings Screen")
         }
+        composable("home") {
+            // Your home screen content goes here
+            Text(text = "Home Screen")
+        }
     }
 }
